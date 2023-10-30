@@ -1,2 +1,2 @@
 # ConsoleSimpleApp
-Programas simples de console, não intenção academica. Apenas scripts simples para se divertir com as linguagem.
+Programas simples de console, sem intenção academica. Estes são apenas scripts simples para se divertir com as linguagem.
