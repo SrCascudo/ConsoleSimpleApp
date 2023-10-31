@@ -22,8 +22,8 @@ def adicionar():
     
     res = input('Fruta: ')
     if len(res) != 0:
-        with open('frut_list.txt', mode='a', encoding='UTF-8') as frut_list:
-            frut_list.write(f'{res}\n')
+        with open('fruit_list.txt', mode='a', encoding='UTF-8') as fruit_list:
+            fruit_list.write(f'{res}\n')
         adicionar()
     else:
         return
@@ -40,14 +40,14 @@ def remover():
     print('----------------------------------------------------')
     visualizar(cabecalho=False)
 
-    with open('frut_list.txt', mode='r', encoding='UTF-8') as frut_list:
-        lines = frut_list.readlines() 
+    with open('fruit_list.txt', mode='r', encoding='UTF-8') as fruit_list:
+        lines = fruit_list.readlines() 
         fruta = input('Fruta: ')
         if len(fruta) != 0:
-            with open('frut_list.txt', mode='w', encoding='UTF-8') as frut_list:
+            with open('fruit_list.txt', mode='w', encoding='UTF-8') as fruit_list:
                 for line in lines:
                     if line.strip('\n').lower() != fruta.lower():
-                        frut_list.write(line)
+                        fruit_list.write(line)
             
             remover()
         else:
@@ -62,11 +62,11 @@ def visualizar(cabecalho = True):
         print('----------------------------------------------------')
         print('')
 
-    with open('frut_list.txt', mode='r', encoding='UTF-8') as frut_list:
+    with open('fruit_list.txt', mode='r', encoding='UTF-8') as fruit_list:
 
         print('                      FRUTAS                        ')
         print('----------------------------------------------------')
-        for line in frut_list.readlines():
+        for line in fruit_list.readlines():
             print(f'| {adicionar_espaco(line, 50)} |')
         print('----------------------------------------------------')
 
@@ -94,7 +94,6 @@ def processar(resposta):
         print('Ops! Parece que o valor que você informou não corresponde as alternativas, por favor informar um valor válido.')
         input('Pressione Enter para continuar:')
 
-    
     return reexibir_menu
 
 def limpar_console():
@@ -109,7 +108,13 @@ def adicionar_espaco(line, max_char):
         espacos += ' '
     return line.strip('\n') + espacos
 
+def criarArquivo():
+    try:
+        with open('fruit_list.txt', 'x') as arq:
+            pass
+    except FileExistsError:
+        pass
 
+criarArquivo()
 while processar(chamar_menu()):
     limpar_console()
-
